@@ -10,7 +10,7 @@ const slsConfig: AWS = {
     provider: {
         name: 'aws',
         environment: {
-            BOOKS_TABLE_NAME: 'books',
+            BOOKS_TABLE_NAME: booksTable.getName(),
         },
     },
     resources: {

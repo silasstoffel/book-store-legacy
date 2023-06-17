@@ -1,6 +1,6 @@
 export class BooksTable {
 
-    private tableName = '${self:service}-${self:provider.stage}-books';
+    private tableName = 'books-${self:provider.stage}';
     
     getName(): string {
         return this.tableName
