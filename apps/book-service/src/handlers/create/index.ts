@@ -1,5 +1,6 @@
+import { handlerPath } from '../../../../../packages/serverless-util'
 export default {
-    handler: `handler.main`,
+    handler: `${handlerPath(__dirname)}/handler.main`,
     events: [
         {
             http: {

@@ -10,6 +10,7 @@ export class Book {
     public readonly genre!: string;
     public readonly language!: string;
     public readonly pages!: number;
+    public readonly title!: string;
     public readonly description!: string;
     public readonly price?: number | null;
     public readonly tags?: string[] | null;

@@ -44,4 +44,21 @@ export class BooksTable {
         }
       }
     }
+
+    getRoles() {
+        return {
+          Effect: 'Allow',
+          Resource: [
+            {
+              'Fn::GetAtt': ['BooksTable', 'Arn'],
+            },
+          ],
+          Action: [
+            'dynamodb:PutItem',
+            'dynamodb:UpdateItem',
+            'dynamodb:ListStreams',
+            'dynamodb:DescribeStream'
+         ],
+        }
+      }
 }
