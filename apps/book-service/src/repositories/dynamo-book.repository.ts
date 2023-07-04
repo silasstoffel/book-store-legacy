@@ -35,12 +35,13 @@ export class DynamoBookRepository implements BookRepository {
     return result.Items as Book[];
   }
 
-  async update(id: string, updates: Partial<Book>): Promise<void> {
+  async update(id: string, updates: Partial<Book>): Promise<Book> {
     const params = {
       TableName: this.tableName,
       Key: { id },
-      UpdateExpression: 'set #author = :author, #isbn = :isbn, #publicationYear = :publicationYear, #publisher = :publisher, #genre = :genre, #language = :language, #pages = :pages, #description = :description, #price = :price, #tags = :tags',
+      UpdateExpression: 'set #title = :title, #author = :author, #isbn = :isbn, #publicationYear = :publicationYear, #publisher = :publisher, #genre = :genre, #language = :language, #pages = :pages, #description = :description, #price = :price, #tags = :tags',
       ExpressionAttributeNames: {
+        '#title': 'title',
         '#author': 'author',
         '#isbn': 'isbn',
         '#publicationYear': 'publicationYear',
@@ -53,6 +54,7 @@ export class DynamoBookRepository implements BookRepository {
         '#tags': 'tags',
       },
       ExpressionAttributeValues: {
+        ':title': updates.title,
         ':author': updates.author,
         ':isbn': updates.isbn,
         ':publicationYear': updates.publicationYear,
@@ -64,9 +66,12 @@ export class DynamoBookRepository implements BookRepository {
         ':price': updates.price,
         ':tags': updates.tags,
       },
+      ReturnValues: 'UPDATED_NEW'
     };
 
-    await this.client.update(params).promise();
+    const data = await this.client.update(params).promise();
+
+    return {...data.Attributes, id } as Book;
   }
 
   async delete(id: string): Promise<void> {
