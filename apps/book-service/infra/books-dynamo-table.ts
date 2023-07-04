@@ -57,7 +57,8 @@ export class BooksTable {
             'dynamodb:PutItem',
             'dynamodb:UpdateItem',
             'dynamodb:Scan',
-            'dynamodb:GetItem'
+            'dynamodb:GetItem',
+            'dynamodb:DeleteItem'
          ],
         }
       }

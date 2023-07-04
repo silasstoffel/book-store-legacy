@@ -10,7 +10,6 @@ const repository = new DynamoBookRepository(
 const useCase = new LoadOneBooksUseCase(repository);
 
 export const main = async (event: APIGatewayProxyEvent) => {
-    console.log('Path Parameters:', JSON.stringify(event.pathParameters,  null, 2));
     const id = event.pathParameters?.id as string;
     const book = await useCase.execute(id);
     

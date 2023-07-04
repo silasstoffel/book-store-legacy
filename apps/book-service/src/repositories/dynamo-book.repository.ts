@@ -73,9 +73,14 @@ export class DynamoBookRepository implements BookRepository {
     const params = {
       TableName: this.tableName,
       Key: { id },
+      ReturnValues: "ALL_OLD"
     };
 
-    await this.client.delete(params).promise();
+    const data = await this.client.delete(params).promise();
+    
+    if (!data.Attributes) {
+      throw new Error('Book not found.');
+    }    
   }
 }
 
