@@ -56,8 +56,8 @@ export class BooksTable {
           Action: [
             'dynamodb:PutItem',
             'dynamodb:UpdateItem',
-            'dynamodb:ListStreams',
-            'dynamodb:DescribeStream'
+            'dynamodb:Scan',
+            'dynamodb:GetItem'
          ],
         }
       }

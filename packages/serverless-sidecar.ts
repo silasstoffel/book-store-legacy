@@ -11,6 +11,7 @@ export default function(config: AWS): AWS {
     sls.provider.timeout = 10;
     sls.provider.stage = 'dev';
     sls.provider.tracing = { lambda: false };
+    sls.provider.logRetentionInDays = 1
 
     sls.package = { individually: true }
 

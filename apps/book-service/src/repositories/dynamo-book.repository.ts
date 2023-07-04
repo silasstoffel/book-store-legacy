@@ -29,9 +29,7 @@ export class DynamoBookRepository implements BookRepository {
   }
 
   async getAll(): Promise<Book[]> {
-    const params = {
-      TableName: this.tableName,
-    };
+    const params = { TableName: this.tableName };
 
     const result = await this.client.scan(params).promise();
     return result.Items as Book[];
