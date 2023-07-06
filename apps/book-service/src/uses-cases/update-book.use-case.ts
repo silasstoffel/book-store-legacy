@@ -7,7 +7,7 @@ export class UpdateBookUseCase {
 
   async execute(id: string, book: Book): Promise<Book> {
     const data = await this.repository.update(id, book);
-    this.event.publish('product.updated', data);
+    await this.event.publish('product.updated', data);
 
     return data;
   }

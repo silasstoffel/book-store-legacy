@@ -18,6 +18,14 @@ export class BookTopic {
                 DisplayName: this.name.replace(/.fifo/, ''),
                 TopicName: this.name,
                 FifoTopic: true,
+                Subscription: [
+                  {
+                    Protocol : 'sqs',
+                    Endpoint: {
+                      'Fn::ImportValue': 'bookstore-catalog-${self:provider.stage}-sync-product-catalog-queue-arn'
+                    }
+                  }
+                ],
                 Tags : [
                     { Key : "squad", Value : "core" },
                     { Key : "app", Value : "book-store" }

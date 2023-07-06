@@ -23,6 +23,8 @@ export class BookEventPublisher {
        const data = {
             Message: JSON.stringify(message),
             TopicArn: this.topicARN,
+            MessageGroupId: book.id,
+            MessageDeduplicationId: `${book.id}-${Date.now()}`,
             MessageAttributes: {
                 eventType: {
                     DataType: 'String',

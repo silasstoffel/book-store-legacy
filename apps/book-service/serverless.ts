@@ -11,6 +11,7 @@ const slsConfig: AWS = {
     service: 'bookstore-books',
     provider: {
         name: 'aws',
+        memorySize: 128,
         environment: {
             BOOKS_TABLE_NAME: booksTable.getName(),
             BOOK_TOPIC_ARN: bookTopic.getARN()

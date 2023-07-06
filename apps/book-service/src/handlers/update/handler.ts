@@ -18,8 +18,6 @@ const event = new BookEventPublisher(
 const useCase = new UpdateBookUseCase(repository, event);
 
 export const main = async (event: APIGatewayEvent) => {
-    console.log('Environment: ', JSON.stringify(process.env, null, 2));
-
     const id = event.pathParameters?.id as string;
     const data = JSON.parse(event?.body || '{}') as Book; 
     const entity = Book.build(data)
